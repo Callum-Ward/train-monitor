@@ -1,11 +1,12 @@
-import { fetchTrainData } from '../api/train';
+import { ReactNode } from 'react';
 import JSONTree from 'react-json-tree';
 
-async function  TrainDataComponent() {
+interface Props {
+    children: ReactNode;
+}
 
-    const trainData = await fetchTrainData("WOK");
-
-
+function TrainBoard({children} : Props) {
+    const trainData = children
     return (
         <div>
             {trainData ? (
@@ -17,4 +18,4 @@ async function  TrainDataComponent() {
     );
 }
 
-export default TrainDataComponent;
+export default TrainBoard;

@@ -3,12 +3,12 @@
 import axios from 'axios';
 
 
-export async function fetchTrainData(Crs: string) {
+export async function fetchTrainData(crs: string) {
 
     try {
         const apiKey = process.env.TRAINLINE_API_KEY;
 
-        console.log(Crs)
+        console.log(crs)
         // Define your query parameters
         const crsValue = 'WAT';
         const numRows = 10;
@@ -19,18 +19,19 @@ export async function fetchTrainData(Crs: string) {
 
         // Construct the URL with template literals
         const url = `https://api1.raildata.org.uk/1010-live-arrival-and-departure-boards-arr-and-dep/LDBWS/api/20220120/GetArrDepBoardWithDetails/${crsValue}`;
-
-        const response = await axios.get(url, {
+        const finalUrl = `${url}/${crs}`
+        const response = await fetch(url, {
+            method: 'GET',
             headers: {
-                'x-apikey': apiKey,
-                'Content-Type': 'application/json',
-            },
+                'x-apikey': `${apiKey}` // replace with your API key
+            }
         });
-        if (response.status === 200) {
-            return response.data; // Return the JSON data
-        } else {
-            throw new Error(`API request failed with status ${response.status}`);
-        }  
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+        
     } catch (error) {
         console.error('Error fetching train data:');
         throw error;
