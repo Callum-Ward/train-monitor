@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
-import { fetchTrainData } from './api/train';
 
 type trainDataJson = {
   trains: JSON
@@ -16,7 +14,7 @@ const Home: React.FC = () => {
       </div>
   
       <div>
-        <Link href="/client-fetch-api">Client side rendered</Link>
+        <Link href="/client-side-render">Client side rendered</Link>
       </div>
     </div>
   );

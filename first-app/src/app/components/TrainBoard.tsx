@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import JSONTree from 'react-json-tree';
 
 interface Props {
     children: ReactNode;

@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchTrainData } from '../api/train';
+import fetchTrainData from '../api/train';
 
 
 export default async function Page() {

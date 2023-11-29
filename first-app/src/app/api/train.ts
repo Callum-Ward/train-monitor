@@ -1,9 +1,7 @@
 //Darwin API: Live Arrival and Departure Boards
+import { promises as fs } from 'fs';
 
-import axios from 'axios';
-
-
-export async function fetchTrainData(crs: string) {
+export default async function fetchTrainData(crs: string) {
 
     try {
         const apiKey = process.env.TRAINLINE_API_KEY;
@@ -27,7 +25,11 @@ export async function fetchTrainData(crs: string) {
             }
         });
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            //if api isn't working fetch a local outdated json capture as backup
+            const file = await fs.readFile(process.cwd() + '/src/app/api/train-arr-dep-details.json', 'utf8');
+            const data = JSON.parse(file);
+            return data;
+            //throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         return data;
