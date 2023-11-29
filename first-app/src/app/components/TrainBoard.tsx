@@ -8,11 +8,10 @@ function TrainBoard({children} : Props) {
     const trainData = children
     return (
         <div>
-            {trainData ? (
-                <pre>{JSON.stringify(trainData, null, 2)}</pre>
-            ) : (
-                <p>Loading train data...</p>
-            )}
+            {
+                
+
+            }
         </div>
     );
 }
