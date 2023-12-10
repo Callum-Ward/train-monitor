@@ -17,4 +17,4 @@ function DestinationColumn({children} : Props) {
     );
 }
 
-export default TrainBoard;
+export default DestinationColumn;

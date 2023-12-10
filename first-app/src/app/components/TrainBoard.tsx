@@ -8,10 +8,7 @@ function TrainBoard({children} : Props) {
     const trainData = children
     return (
         <div>
-            {
-                
 
-            }
         </div>
     );
 }
