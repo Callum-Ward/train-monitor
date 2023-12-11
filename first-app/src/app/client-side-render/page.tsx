@@ -1,9 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import BasicBoard from '../components/BasicBoard';
-import JsonBoard from '../components/JsonBoard';
-import NewBoard from '../components/NewBoardEntry';
+import BasicBoard from '../components/basic-board/BasicBoard';
+import JsonBoard from '../components/json-board/JsonBoard';
+import NewBoard from '../components/new-board/NewBoardEntry';
 
 enum board  {
   json,
