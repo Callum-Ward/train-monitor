@@ -24,7 +24,7 @@ export default function Page() {
     fetch(`/api/data?crs=${stationName}`)
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
+        setData(data.data);
         setLoading(false);
     });
   };
@@ -33,11 +33,11 @@ export default function Page() {
     if (data) {
       switch(boardType) {
         case board.json:
-          return <JsonBoard JsonData={data}/> 
+          return <JsonBoard JsonTrainData={data}/> 
         case board.basic:
-          return <BasicBoard JsonData={data}/>
+          return <BasicBoard JsonTrainData={data}/>
         case board.new:
-          return <NewBoard JsonData={data}/>
+          return <NewBoard JsonTrainData={data}/>
       }
     }
 
@@ -45,7 +45,6 @@ export default function Page() {
   }
 
   
-  console.log(data)
 
   // Render data
   return (

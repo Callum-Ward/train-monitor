@@ -1,0 +1,221 @@
+{
+    "trainServices": [
+        {
+            "previousCallingPoints": [
+                {
+                    "callingPoint": [
+                        {
+                            "locationName": "London Waterloo",
+                            "crs": "WAT",
+                            "st": "12:50",
+                            "at": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        }
+                    ],
+                    "serviceType": "train",
+                    "serviceChangeRequired": false,
+                    "assocIsCancelled": false
+                }
+            ],
+            "futureCancellation": false,
+            "futureDelay": false,
+            "origin": [
+                {
+                    "locationName": "London Waterloo",
+                    "crs": "WAT",
+                    "assocIsCancelled": false
+                }
+            ],
+            "destination": [
+                {
+                    "locationName": "Woking",
+                    "crs": "WOK",
+                    "assocIsCancelled": false
+                }
+            ],
+            "sta": "13:38",
+            "eta": "13:45",
+            "platform": "3",
+            "operator": "South Western Railway",
+            "operatorCode": "SW",
+            "isCircularRoute": false,
+            "isCancelled": false,
+            "filterLocationCancelled": false,
+            "serviceType": "train",
+            "length": 0,
+            "detachFront": false,
+            "isReverseFormation": false,
+            "delayReason": "This train has been delayed by a late running train being in front of this one",
+            "serviceID": "2131258WOKING__"
+        }
+    ],
+    "busServices": [
+        {
+            "previousCallingPoints": [
+                {
+                    "callingPoint": [
+                        {
+                            "locationName": "Guildford",
+                            "crs": "GLD",
+                            "st": "13:20",
+                            "et": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        }
+                    ],
+                    "serviceType": "bus",
+                    "serviceChangeRequired": false,
+                    "assocIsCancelled": false
+                }
+            ],
+            "subsequentCallingPoints": [
+                {
+                    "callingPoint": [
+                        {
+                            "locationName": "Heathrow Airport T5 (Bus)",
+                            "crs": "HWX",
+                            "st": "14:26",
+                            "et": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        }
+                    ],
+                    "serviceType": "bus",
+                    "serviceChangeRequired": false,
+                    "assocIsCancelled": false
+                }
+            ],
+            "futureCancellation": false,
+            "futureDelay": false,
+            "origin": [
+                {
+                    "locationName": "Guildford",
+                    "crs": "GLD",
+                    "assocIsCancelled": false
+                }
+            ],
+            "destination": [
+                {
+                    "locationName": "Heathrow Airport T3 (Bus)",
+                    "crs": "HWE",
+                    "assocIsCancelled": false
+                }
+            ],
+            "rsid": "SW018700",
+            "std": "13:52",
+            "etd": "On time",
+            "platform": "BUS",
+            "operator": "South Western Railway",
+            "operatorCode": "SW",
+            "isCircularRoute": false,
+            "isCancelled": false,
+            "filterLocationCancelled": false,
+            "serviceType": "bus",
+            "length": 0,
+            "detachFront": false,
+            "isReverseFormation": false,
+            "serviceID": "2142467WOKING__"
+        },
+        {
+            "previousCallingPoints": [
+                {
+                    "callingPoint": [
+                        {
+                            "locationName": "Heathrow Airport T3 (Bus)",
+                            "crs": "HWE",
+                            "st": "12:55",
+                            "et": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        },
+                        {
+                            "locationName": "Heathrow Airport T2 (Bus)",
+                            "crs": "HWA",
+                            "st": "13:01",
+                            "et": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        },
+                        {
+                            "locationName": "Heathrow Airport T5 (Bus)",
+                            "crs": "HWX",
+                            "st": "13:20",
+                            "et": "On time",
+                            "isCancelled": false,
+                            "length": 0,
+                            "detachFront": false,
+                            "affectedByDiversion": false,
+                            "rerouteDelay": 0
+                        }
+                    ],
+                    "serviceType": "bus",
+                    "serviceChangeRequired": false,
+                    "assocIsCancelled": false
+                }
+            ],
+            "futureCancellation": false,
+            "futureDelay": false,
+            "origin": [
+                {
+                    "locationName": "Heathrow Airport T3 (Bus)",
+                    "crs": "HWE",
+                    "assocIsCancelled": false
+                }
+            ],
+            "destination": [
+                {
+                    "locationName": "Woking",
+                    "crs": "WOK",
+                    "assocIsCancelled": false
+                }
+            ],
+            "rsid": "SW014400",
+            "sta": "13:54",
+            "eta": "On time",
+            "platform": "BUS",
+            "operator": "South Western Railway",
+            "operatorCode": "SW",
+            "isCircularRoute": false,
+            "isCancelled": false,
+            "filterLocationCancelled": false,
+            "serviceType": "bus",
+            "length": 0,
+            "detachFront": false,
+            "isReverseFormation": false,
+            "serviceID": "2142335WOKING__"
+        }
+    ],
+    "Xmlns": {
+        "Count": 8
+    },
+    "generatedAt": "2023-11-29T13:44:09.6868804+00:00",
+    "locationName": "Woking",
+    "crs": "WOK",
+    "filterType": "to",
+    "nrccMessages": [
+        {
+            "Value": "<p>\nThe following toilets are out of order at Woking station:</p><p>The Gentlemen's toilets on Platforms 2 &amp; 5</p><p>The Ladies toilets on Platform 4</p><p>The accessible toilets on Platforms 4 &amp; 5.</p>"
+        },
+        {
+            "Value": "\nThe lifts are out of order between Platform 4 and Platform 5 at Woking station."
+        }
+    ],
+    "platformAvailable": true,
+    "areServicesAvailable": true
+}
