@@ -3,7 +3,7 @@ import {RootTrainObject} from "../../api/trainDataType";
 
 
 export default function NewBoardEntry({TrainService}) {
-    console.log(TrainService)
+    console.log('TrainService' + TrainService)
     const destination = () => {
         const noDestination = "None"
         if (!TrainService.destination) return noDestination
@@ -50,7 +50,7 @@ export default function NewBoardEntry({TrainService}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {TrainService.subsequentCallingPoints.map((station) => (
+                    {TrainService?.subsequentCallingPoints?.map((station) => (
                         <tr key={station.callingPoint[0].locationName}>
                             <td>{station.callingPoint[0].locationName}</td>
                             <td>{callingPointArrival(station)}</td>

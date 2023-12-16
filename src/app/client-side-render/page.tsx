@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import BasicBoard from '../components/basic-board/BasicBoard';
 import JsonBoard from '../components/json-board/JsonBoard';
-import NewBoard from '../components/new-board/NewBoardEntry';
+import NewBoard from '../components/new-board/NewBoard';
 
 enum board  {
   json,
