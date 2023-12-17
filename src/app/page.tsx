@@ -1,9 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 
-type trainDataJson = {
-  trains: JSON
-}
 
 const Home: React.FC = () => {
   return (

@@ -23,15 +23,17 @@ export default async function fetchTrainData(crs: string) {
                 'x-apikey': `${apiKey}` // replace with your API key
             }
         });
+        const path = process.cwd() + '/src/app/api/train-arr-dep-details.json'
         if (!response.ok) {
             //if api isn't working fetch a local outdated json capture as backup
-            const file = await fs.readFile(process.cwd() + '/src/app/api/train-arr-dep-details.json', 'utf8');
+            const file = await fs.readFile(path, 'utf8');
             const data = JSON.parse(file);
             console.log('Station request ' + crs + ' failed')
             return data;
             //throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        const write = await fs.writeFile(path, JSON.stringify(data, null, 2))
         console.log('RESPONSE crs: ' + data.crs)
         return data;
         
