@@ -1,6 +1,25 @@
 import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import { Card, CardContent, Typography, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import {RootTrainObject} from "../../api/trainDataType";
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        padding: theme.spacing(2),
+    },
+    card: {
+        backgroundColor: '#f5f5f5',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    }, 
+    typographySection: {
+        backgroundColor: (props: {isCancelled: boolean}) =>
+            props.isCancelled ? '#ff0000' : '#2196f3', // Red for canceled, blue otherwise
+        color: '#ffffff', // Customize the text color
+        padding: theme.spacing(2), // Add padding to the typography section
+    },
+}));
 
 export default function NewBoardEntry({TrainService}) {
 
@@ -19,33 +38,38 @@ export default function NewBoardEntry({TrainService}) {
         return station.et
     }
 
+    const classes = useStyles({isCancelled: TrainService?.isCancelled});
 
     return (
-        <div className="outline grid" >
-            <div className="">
-                <h1>{arrivalTime()}</h1>
-                <h1>{TrainService?.destination[0]?.locationName}</h1>
-                <h2>{TrainService?.platform}</h2>
-            </div>
-    
-            <table className="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Calling at</th>
-                        <th>Arrival</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {TrainService?.subsequentCallingPoints && TrainService?.subsequentCallingPoints[0]?.callingPoint?.map((station) => (
-                        
-                        <tr className="outline-dashed outline-red-500" key={station.locationName}>
-                            <td>{station.locationName}</td>
-                            <td>{callingPointArrival(station)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <label typeof="text"></label>
+        <div className={classes.root}>
+            <Card className={classes.card}>
+                <CardContent>
+                    <div className={classes.typographySection}>
+                        <Typography variant="h4">{arrivalTime()}</Typography>
+                        <Typography variant="h5">{TrainService?.destination[0]?.locationName}</Typography>
+                        <Typography variant="subtitle1">Platform: {TrainService?.platform}</Typography>
+                    </div>
+
+                
+        
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Calling at</TableCell>
+                                <TableCell>Arrival</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {TrainService?.subsequentCallingPoints?.[0]?.callingPoint?.map((station) => (
+                                <TableRow key={station.locationName}>
+                                    <TableCell>{station.locationName}</TableCell>
+                                    <TableCell>{callingPointArrival(station)}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
         </div>
     );
 }
