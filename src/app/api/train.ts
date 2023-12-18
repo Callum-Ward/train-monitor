@@ -1,6 +1,8 @@
 //Darwin API: Live Arrival and Departure Boards
 import { promises as fs } from 'fs';
 
+var called = 0
+
 export default async function fetchTrainData(crs: string) {
 
     try {
@@ -32,9 +34,13 @@ export default async function fetchTrainData(crs: string) {
             return data;
             //throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        const write = await fs.writeFile(path, JSON.stringify(data, null, 2))
-        console.log('RESPONSE crs: ' + data.crs)
+        //Return to const when finished testing
+        var data = await response.json();
+        
+        console.log('called ' + called++ + ' times');
+        const write = await fs.writeFile(path, JSON.stringify(data, null, 2));
+        console.log('RESPONSE crs: ' + data.crs);
+       //data = {a:called}
         return data;
         
     } catch (error) {

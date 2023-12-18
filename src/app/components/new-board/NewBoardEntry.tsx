@@ -15,7 +15,7 @@ export default function NewBoardEntry({TrainService}) {
     const callingPointArrival = (station) => {
         const noArrival = "None"
         if (!station.st) return noArrival
-        if (station.et != "On time") return station.st
+        if (station.et == "On time") return station.st
         return station.et
     }
 
