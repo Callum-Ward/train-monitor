@@ -3,11 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import {RootTrainObject} from "../../api/trainDataType";
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        padding: theme.spacing(2),
+        flexGrow: 1
     },
     card: {
         backgroundColor: '#f5f5f5',
@@ -19,16 +17,20 @@ const useStyles = makeStyles((theme) => ({
         color: '#ffffff', // Customize the text color
         padding: theme.spacing(2), // Add padding to the typography section
     },
+    boldHeader: {
+        fontWeight: 'bold',
+    },
 }));
 
 export default function NewBoardEntry({TrainService}) {
 
     const arrivalTime = () => {
         const noArrival = "None"
-        if (!TrainService.sta) return noArrival
-        if (!TrainService.eta) return noArrival
-        if (TrainService.eta == "On time") return TrainService.std
-        return TrainService.eta
+        if  (TrainService?.etd == "On time") return TrainService?.std
+        if (TrainService?.etd) return TrainService.etd
+        if (TrainService?.eta == "On time") return TrainService?.sta
+        if (TrainService?.eta) return TrainService.eta
+        return noArrival
     }
 
     const callingPointArrival = (station) => {
@@ -55,8 +57,8 @@ export default function NewBoardEntry({TrainService}) {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Calling at</TableCell>
-                                <TableCell>Arrival</TableCell>
+                                <TableCell className={classes.boldHeader}>Calling at</TableCell>
+                                <TableCell className={classes.boldHeader}>Arrival</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

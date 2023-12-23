@@ -1,9 +1,28 @@
 'use client'
 
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, FormControl, TextField, Grid, Box } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import BasicBoard from '../components/basic-board/BasicBoard';
 import JsonBoard from '../components/json-board/JsonBoard';
 import NewBoard from '../components/new-board/NewBoard';
+import { classicNameResolver } from 'typescript';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+  },
+  button : {
+    color : 'black'
+  },
+  centeredPlaceholder: {
+    '&::placeholder': {
+      textAlign: 'center',
+    },
+  },
+}));
+
 
 enum board  {
   json,
@@ -18,6 +37,7 @@ export default function Page() {
   const [isLoading, setLoading] = useState(false)
   const [boardType, setBoardType] = useState(board.json)
 
+  const classes = useStyles();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -44,8 +64,6 @@ export default function Page() {
 
   }
 
-  
-
   // Render data
   return (
     <div>
@@ -54,32 +72,31 @@ export default function Page() {
         <p>Using new app router to manually fetch data from server</p>
       </div>
       
-      <form onSubmit={handleSearch}>
-        <label>
-          Enter Station Name:
-          <div>
-            <input
-            type="text"
-            value={stationName}
-            className="text-black border border-gray-300 px-2 py-1 rounded"
-            onChange={(e) => setStationName(e.target.value)}
-            />
-          </div>
-        </label>
-        <button type="submit">Search</button>
-      </form>
-
-      <div>
-        <div>
-          <button className='' onClick={() => setBoardType(board.json)}>Json</button>
-        </div>
-        <div>
-          <button onClick={() => setBoardType(board.basic)}>Basic</button>
-        </div>
-        <div>
-          <button onClick={() => setBoardType(board.new)}>New</button>
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          label="Enter Station Name"
+          value={stationName}
+          onChange={(e) => setStationName(e.target.value)}
+          style={{ width: '25%' }}
+          InputLabelProps={{ style: { width: '100%', textAlign: 'center' } }}
+        />
       </div>
+
+      <FormControl>
+
+      </FormControl>
+
+      <Grid container justifyContent='center' spacing={6}>
+        <Grid item>
+          <Button onClick={() => setBoardType(board.json)}>Json</Button>
+        </Grid>
+        <Grid item>
+          <Button onClick={() => setBoardType(board.basic)}>Basic</Button>
+        </Grid>
+        <Grid item>
+          <Button onClick={() => setBoardType(board.new)}>New</Button>
+        </Grid>
+      </Grid>
       <div>
         {renderBoard()}
       </div>

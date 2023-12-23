@@ -1,12 +1,16 @@
 import React from "react";
 import NewBoardEntry from "./NewBoardEntry";
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Card, CardContent, Typography, CardHeader } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         padding: theme.spacing(2),
+    },
+    gridItem: {
+        minWidth: 'fit-content',
     },
 }));
 
@@ -17,11 +21,11 @@ export default function NewBoard({JsonTrainData}) {
 
     return(
         <div className={classes.root}>
-            <Grid container spacing={2} direction="row" justifyContent="flex-start" alignItems="flex-start">
+            <Grid container spacing={0} direction="row" justifyContent="flex-start" alignItems="flex-start">
                 
                     {JsonTrainData.trainServices.map(trainService => (
                         trainService?.subsequentCallingPoints ? (
-                            <Grid item xs={12} sm={6} md={4} key={trainService}>
+                            <Grid item xs={12} sm={6} md={2} className={classes.gridItem} key={trainService}>
                                 <NewBoardEntry TrainService={trainService} />
                             </Grid>
                         ) : null
