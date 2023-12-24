@@ -25,7 +25,7 @@ export default async function fetchTrainData(crs: string) {
                 'x-apikey': `${apiKey}` // replace with your API key
             }
         });
-        const path = process.cwd() + '/src/app/api/train-arr-dep-details.json'
+        const path = process.cwd() + '/src/app/api/stored/train-arr-dep-details.json'
         if (!response.ok) {
             //if api isn't working fetch a local outdated json capture as backup
             const file = await fs.readFile(path, 'utf8');

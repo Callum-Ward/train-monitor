@@ -1,7 +1,7 @@
 'use client'
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, FormControl, TextField, Grid, Box } from '@material-ui/core';
+import { Button, Typography, TextField, Grid, Divider } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import BasicBoard from '../components/basic-board/BasicBoard';
 import JsonBoard from '../components/json-board/JsonBoard';
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight : 'bold'
   }
 }));
-
 
 enum board  {
   json,
@@ -55,17 +54,14 @@ export default function Page() {
           return <NewBoard JsonTrainData={data}/>
       }
     }
-
-
   }
 
   // Render data
   return (
     <div>
-      <h1>Client Side Rendering Page</h1>
-      <div>
-        <p>Using new app router to manually fetch data from server</p>
-      </div>
+      <Typography variant="h4" align="center" style={{marginTop : '10px' , marginBottom : '10px'}}>Client Side Rendering Page</Typography>
+      <Divider></Divider>
+
       
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '20px' }}>
         <form onSubmit={handleSearch} style={{ width: '20%' }} >
@@ -74,13 +70,13 @@ export default function Page() {
             value={stationName}
             onChange={(e) => setStationName(e.target.value)}
             style={{ width: '100%'}}
-            InputLabelProps={{ style: {width: '100%', textAlign: 'center' } }}
+            InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
+            margin='dense'
             inputProps={{style: {width:'100%', textAlign: 'center'} }}
           />
           <input type="submit" style={{ display: 'none' }} />
         </form>
       </div>
-
 
       <Grid container justifyContent='center' spacing={10} className={classes.boardButtons} style={{}} >
         <Grid item>
