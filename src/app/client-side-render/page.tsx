@@ -2,11 +2,19 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography, TextField, Grid, Divider } from '@material-ui/core';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
 import { useState, useEffect } from 'react';
 import BasicBoard from '../components/basic-board/BasicBoard';
 import JsonBoard from '../components/json-board/JsonBoard';
 import NewBoard from '../components/new-board/NewBoard';
 import { classicNameResolver } from 'typescript';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Ubuntu, Arial, sans-serif',
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,10 +67,11 @@ export default function Page() {
   // Render data
   return (
     <div>
+      <ThemeProvider theme={theme}>
+
       <Typography variant="h4" align="center" style={{marginTop : '10px' , marginBottom : '10px'}}>Client Side Rendering Page</Typography>
       <Divider></Divider>
 
-      
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '20px' }}>
         <form onSubmit={handleSearch} style={{ width: '20%' }} >
           <TextField
@@ -72,6 +81,7 @@ export default function Page() {
             style={{ width: '100%'}}
             InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
             margin='dense'
+            
             inputProps={{style: {width:'100%', textAlign: 'center'} }}
           />
           <input type="submit" style={{ display: 'none' }} />
@@ -93,7 +103,7 @@ export default function Page() {
         {renderBoard()}
       </div>
 
-  
+      </ThemeProvider>
     </div>
   );
 }
