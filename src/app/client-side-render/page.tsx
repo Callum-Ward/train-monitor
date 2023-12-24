@@ -13,14 +13,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(2),
   },
-  button : {
-    color : 'black'
-  },
-  centeredPlaceholder: {
-    '&::placeholder': {
-      textAlign: 'center',
-    },
-  },
+  boardButtons : {
+    fontWeight : 'bold'
+  }
 }));
 
 
@@ -72,29 +67,30 @@ export default function Page() {
         <p>Using new app router to manually fetch data from server</p>
       </div>
       
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <TextField
-          label="Enter Station Name"
-          value={stationName}
-          onChange={(e) => setStationName(e.target.value)}
-          style={{ width: '25%' }}
-          InputLabelProps={{ style: { width: '100%', textAlign: 'center' } }}
-        />
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '20px' }}>
+        <form onSubmit={handleSearch} style={{ width: '20%' }} >
+          <TextField
+            label="Enter Station Name"
+            value={stationName}
+            onChange={(e) => setStationName(e.target.value)}
+            style={{ width: '100%'}}
+            InputLabelProps={{ style: {width: '100%', textAlign: 'center' } }}
+            inputProps={{style: {width:'100%', textAlign: 'center'} }}
+          />
+          <input type="submit" style={{ display: 'none' }} />
+        </form>
       </div>
 
-      <FormControl>
 
-      </FormControl>
-
-      <Grid container justifyContent='center' spacing={6}>
+      <Grid container justifyContent='center' spacing={10} className={classes.boardButtons} style={{}} >
         <Grid item>
-          <Button onClick={() => setBoardType(board.json)}>Json</Button>
+          <Button className={classes.boardButtons} onClick={() => setBoardType(board.json)}>Json</Button>
         </Grid>
         <Grid item>
-          <Button onClick={() => setBoardType(board.basic)}>Basic</Button>
+          <Button className={classes.boardButtons} onClick={() => setBoardType(board.basic)}>Basic</Button>
         </Grid>
         <Grid item>
-          <Button onClick={() => setBoardType(board.new)}>New</Button>
+          <Button className={classes.boardButtons} onClick={() => setBoardType(board.new)}>New</Button>
         </Grid>
       </Grid>
       <div>
