@@ -12,7 +12,7 @@ import { classicNameResolver } from 'typescript';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Ubuntu, Arial, sans-serif',
+    fontFamily: 'ubuntu, Arial, sans-serif',
   },
 });
 

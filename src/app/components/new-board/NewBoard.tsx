@@ -23,7 +23,7 @@ export default function NewBoard({JsonTrainData}) {
         <div className={classes.root}>
             <Grid container spacing={5} direction="row" justifyContent="center" alignItems="flex-start">
                 
-                    {JsonTrainData.trainServices.map(trainService => (
+                    {JsonTrainData.trainServices?.map(trainService => (
                         trainService?.subsequentCallingPoints ? (
                             <Grid item xs={12} sm={6} md={2} className={classes.gridItem} key={trainService}>
                                 <NewBoardEntry TrainService={trainService} />
