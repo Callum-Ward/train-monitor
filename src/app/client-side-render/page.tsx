@@ -1,9 +1,8 @@
 'use client'
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Typography, TextField, Grid, Divider } from '@material-ui/core';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import { Button, Typography, TextField, Grid, Divider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/system';
 import { useState, useEffect } from 'react';
 import BasicBoard from '../components/basic-board/BasicBoard';
 import JsonBoard from '../components/json-board/JsonBoard';
@@ -16,14 +15,13 @@ const theme = createTheme({
   },
 });
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-  },
-  boardButtons : {
-    fontWeight : 'bold'
-  }
+const Root = styled('div')(({ theme }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(2),
+}));
+
+const BoardButtons = styled(Button)(({ theme }) => ({
+  fontWeight: 'bold',
 }));
 
 enum board  {
@@ -38,8 +36,6 @@ export default function Page() {
   const [stationName, setStationName] = useState('');
   const [isLoading, setLoading] = useState(false)
   const [boardType, setBoardType] = useState(board.json)
-
-  const classes = useStyles();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -66,7 +62,7 @@ export default function Page() {
 
   // Render data
   return (
-    <div>
+    <Root>
       <ThemeProvider theme={theme}>
 
       <Typography variant="h4" align="center" style={{marginTop : '10px' , marginBottom : '10px'}}>Client Side Rendering Page</Typography>
@@ -76,6 +72,7 @@ export default function Page() {
         <form onSubmit={handleSearch} style={{ width: '20%' }} >
           <TextField
             label="Enter Station Name"
+            variant="standard"
             value={stationName}
             onChange={(e) => setStationName(e.target.value)}
             style={{ width: '100%'}}
@@ -88,15 +85,15 @@ export default function Page() {
         </form>
       </div>
 
-      <Grid container justifyContent='center' spacing={10} className={classes.boardButtons} style={{}} >
+      <Grid container justifyContent='center' spacing={10} style={{}} >
         <Grid item>
-          <Button className={classes.boardButtons} onClick={() => setBoardType(board.json)}>Json</Button>
+          <BoardButtons onClick={() => setBoardType(board.json)}>Json</BoardButtons>
         </Grid>
         <Grid item>
-          <Button className={classes.boardButtons} onClick={() => setBoardType(board.basic)}>Basic</Button>
+          <BoardButtons onClick={() => setBoardType(board.basic)}>Basic</BoardButtons>
         </Grid>
         <Grid item>
-          <Button className={classes.boardButtons} onClick={() => setBoardType(board.new)}>New</Button>
+          <BoardButtons onClick={() => setBoardType(board.new)}>New</BoardButtons>
         </Grid>
       </Grid>
       <div>
@@ -104,6 +101,6 @@ export default function Page() {
       </div>
 
       </ThemeProvider>
-    </div>
+    </Root>
   );
 }
