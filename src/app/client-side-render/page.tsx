@@ -33,13 +33,14 @@ enum board  {
 export default function Page() {
   // Define a state variable to store the data
   const [data, setData] = useState(null);
-  const [stationName, setStationName] = useState('');
+  const [stationFrom, setStationFrom] = useState('');
+  const [stationTo, setStationTo] = useState('');
   const [isLoading, setLoading] = useState(false)
   const [boardType, setBoardType] = useState(board.json)
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetch(`/api/data?crs=${stationName}`)
+    fetch(`/api/data?crs=${stationFrom}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
@@ -69,16 +70,26 @@ export default function Page() {
       <Divider></Divider>
 
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '20px' }}>
-        <form onSubmit={handleSearch} style={{ width: '20%' }} >
+        <form onSubmit={handleSearch} style={{ width: '50%' }} >
           <TextField
-            label="Enter Station Name"
+            label="Station From"
             variant="standard"
-            value={stationName}
-            onChange={(e) => setStationName(e.target.value)}
-            style={{ width: '100%'}}
+            value={stationFrom}
+            onChange={(e) => setStationFrom(e.target.value)}
+            style={{ width: '45%'}}
             InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
             margin='dense'
             
+            inputProps={{style: {width:'100%', textAlign: 'center'} }}
+          />
+          <TextField
+            label="Station To"
+            variant="standard"
+            value={stationTo}
+            onChange={(e) => setStationTo(e.target.value)}
+            style={{ width: '45%', marginLeft: '10%'}}
+            InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
+            margin='dense'
             inputProps={{style: {width:'100%', textAlign: 'center'} }}
           />
           <input type="submit" style={{ display: 'none' }} />
