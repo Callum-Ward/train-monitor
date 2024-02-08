@@ -1,117 +1,22 @@
 'use client'
 
-import { Button, Typography, TextField, Grid, Divider } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/system';
-import { useState, useEffect } from 'react';
-import BasicBoard from '../components/basic-board/BasicBoard';
-import JsonBoard from '../components/json-board/JsonBoard';
-import NewBoard from '../components/new-board/NewBoard';
-import { classicNameResolver } from 'typescript';
+// Redux seems to require client side pages 
+// Meaning the root page (server side) cannot be wrapped with a provider
+// Instead this parent page will wrap all children
 
-const theme = createTheme({
-  typography: {
-    fontFamily: 'ubuntu, Arial, sans-serif',
-  },
-});
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
-const Root = styled('div')(({ theme }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(2),
-}));
-
-const BoardButtons = styled(Button)(({ theme }) => ({
-  fontWeight: 'bold',
-}));
-
-enum board  {
-  json,
-  basic,
-  new
-}
+import ClientSideRender from './ClientSideRender'
 
 export default function Page() {
-  // Define a state variable to store the data
-  const [data, setData] = useState(null);
-  const [stationFrom, setStationFrom] = useState('');
-  const [stationTo, setStationTo] = useState('');
-  const [isLoading, setLoading] = useState(false)
-  const [boardType, setBoardType] = useState(board.json)
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetch(`/api/data?crs=${stationFrom}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.data);
-        setLoading(false);
-    });
-  };
 
-  const renderBoard = () => {
-    if (data) {
-      switch(boardType) {
-        case board.json:
-          return <JsonBoard JsonTrainData={data}/> 
-        case board.basic:
-          return <BasicBoard JsonTrainData={data}/>
-        case board.new:
-          return <NewBoard JsonTrainData={data}/>
-      }
-    }
-  }
 
   // Render data
   return (
-    <Root>
-      <ThemeProvider theme={theme}>
-
-      <Typography variant="h4" align="center" style={{marginTop : '10px' , marginBottom : '10px'}}>Client Side Rendering Page</Typography>
-      <Divider></Divider>
-
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '20px' }}>
-        <form onSubmit={handleSearch} style={{ width: '50%' }} >
-          <TextField
-            label="Station From"
-            variant="standard"
-            value={stationFrom}
-            onChange={(e) => setStationFrom(e.target.value)}
-            style={{ width: '45%'}}
-            InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
-            margin='dense'
-            
-            inputProps={{style: {width:'100%', textAlign: 'center'} }}
-          />
-          <TextField
-            label="Station To"
-            variant="standard"
-            value={stationTo}
-            onChange={(e) => setStationTo(e.target.value)}
-            style={{ width: '45%', marginLeft: '10%'}}
-            InputLabelProps={{ style: { width: '100%', textAlign: 'center' }}}
-            margin='dense'
-            inputProps={{style: {width:'100%', textAlign: 'center'} }}
-          />
-          <input type="submit" style={{ display: 'none' }} />
-        </form>
-      </div>
-
-      <Grid container justifyContent='center' spacing={10} style={{}} >
-        <Grid item>
-          <BoardButtons onClick={() => setBoardType(board.json)}>Json</BoardButtons>
-        </Grid>
-        <Grid item>
-          <BoardButtons onClick={() => setBoardType(board.basic)}>Basic</BoardButtons>
-        </Grid>
-        <Grid item>
-          <BoardButtons onClick={() => setBoardType(board.new)}>New</BoardButtons>
-        </Grid>
-      </Grid>
-      <div>
-        {renderBoard()}
-      </div>
-
-      </ThemeProvider>
-    </Root>
+    <Provider store={store}>
+      <ClientSideRender></ClientSideRender>
+    </Provider> 
   );
 }
